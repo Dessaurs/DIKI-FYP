@@ -1,42 +1,78 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Leaderboard</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
-</head>
-<body>
-    <h2>Leaderboard</h2>
-    <table>
-        <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Score</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Player One</td>
-            <td>1000</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Player Two</td>
-            <td>900</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Player Three</td>
-            <td>800</td>
-        </tr>
-    </table>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <title>DIKI Leaderboards</title>
+    <link rel="stylesheet" href="leaderstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="containernav">
+          <div class="logo">DIKI</div>
+          <ul class="nav-links">
+            <li><a href="index.html">Typing Test</a></li>
+            <li><a href="keytest.html">Keyboard Tester</a></li>
+            <li><a href="leaderboardindex.html">Leaderboard</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <h1>All-Time Leaderboards</h1>
+
+        <div class="leaderboard-container">
+            <div class="leaderboard">
+                <h2>Time 15</h2>
+                <ol id="15sec-leaderboard" class="15sec-leaderboard">
+                    <li>
+                        <span>#</span>
+                        <span>Name</span>
+                        <span>WPM</span>
+                        <span>Mistakes</span>
+                        <span>Date</span>
+                    </li>
+                    <!-- Sample data goes here -->
+                    <li><span>1.</span>rocket - 394.76</li>
+                    <li><span>2.</span>izangi_ - 388.97</li>
+                    <!-- Add more sample data as needed -->
+                </ol>
+            </div>
+
+            <div class="leaderboard">
+                <h2>Time 30</h2>
+                <ol id="30sec-leaderboard" class="30sec-leaderboard">
+                    <li>
+                        <span>#</span>
+                        <span>Name</span>
+                        <span>WPM</span>
+                        <span>Mistakes</span>
+                        <span>Date</span>
+                    </li>
+                    <!-- Sample data goes here -->
+                    <li><span>1.</span>rocket - 277.32</li>
+                    <li><span>2.</span>joshua728 - 269.28</li>
+                    <!-- Add more sample data as needed -->
+                </ol>
+            </div>
+
+            <div class="leaderboard">
+                <h2>Time 60</h2>
+                <ol id="60sec-leaderboard" class="60sec-leaderboard">
+                    <li>
+                        <span>#</span>
+                        <span>Name</span>
+                        <span>WPM</span>
+                        <span>Mistakes</span>
+                        <span>Date</span>
+                    </li>
+                    <!-- Sample data goes here -->
+                    <li><span>1.</span>rocket - 377.32</li>
+                    <li><span>2.</span>joshua728 - 269.28</li>
+                    <!-- Add more sample data as needed -->
+                </ol>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
