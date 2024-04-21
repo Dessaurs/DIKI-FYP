@@ -1,10 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import 'dotenv/config';
 import leaderboard from './routes/leaderboard.js';
 import user from './routes/user.js';
 
 const app = express();
+app.use(cors());
+app.options('*', cors());
 
 app.use('/api/v1/user', user);
 app.use('/api/v1/leaderboard', leaderboard);
