@@ -94,7 +94,7 @@ async function initTimer() {
 }
 
 function resetGame() {
-    if (wpmTag.innerText != 0) postLeaderboard();
+    if (parseInt(wpmTag.innerText) > 10 && mistakeTag.innerText <= 50)postLeaderboard();
     clearInterval(timer);
     maxTime = timeLeft = parseInt(timeSelect.value);
     charIndex = mistakes = isTyping = 0;
