@@ -8,7 +8,7 @@ const jsonParser = bodyParser.json();
 router.post('/login', jsonParser, async (req, res) => {
     const user = await User.findOne({ username: req.body.username });
     if (user && req.body.password === user.password) {
-        return res.status(200).send({ user: user._id, message: 'Successful login' });
+        return res.status(200).send({ username: user.username, message: 'Successful login' });
     } else {
         return res.status(404).send('Username and password does not match');
     }

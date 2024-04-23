@@ -1,78 +1,112 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">  
-    <title>DIKI Leaderboards</title>
-    <link rel="stylesheet" href="leaderstyle.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <nav class="navbar">
-        <div class="containernav">
-          <div class="logo">DIKI</div>
-          <ul class="nav-links">
-            <li><a href="index.html">Typing Test</a></li>
-            <li><a href="keytest.html">Keyboard Tester</a></li>
-            <li><a href="leaderboardindex.html">Leaderboard</a></li>
-            <li><a href="#">Login</a></li>
-          </ul>
-        </div>
-      </nav>
-    <div class="container">
-        <h1>All-Time Leaderboards</h1>
-
-        <div class="leaderboard-container">
-            <div class="leaderboard">
-                <h2>Time 15</h2>
-                <ol id="15sec-leaderboard" class="15sec-leaderboard">
-                    <li>
-                        <span>#</span>
-                        <span>Name</span>
-                        <span>WPM</span>
-                        <span>Mistakes</span>
-                        <span>Date</span>
-                    </li>
-                    <!-- Sample data goes here -->
-                    <li><span>1.</span>rocket - 394.76</li>
-                    <li><span>2.</span>izangi_ - 388.97</li>
-                    <!-- Add more sample data as needed -->
-                </ol>
+    <head>
+        <meta charset="utf-8" />
+        <title>DIKI Leaderboards</title>
+        <link rel="stylesheet" href="leaderstyle.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="containernav">
+                <div class="logo">DIKI</div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Typing Test</a></li>
+                    <li><a href="keytest.html">Keyboard Tester</a></li>
+                    <li><a href="leaderboardindex.html">Leaderboard</a></li>
+                </ul>
             </div>
+        </nav>
+        <div class="container">
+            <h1>All-Time Leaderboards</h1>
+            <div class="leaderboard-container">
+                <div class="leaderboard">
+                    <h2>Time 15</h2>
+                    <ol id="15sec-leaderboard" class="15sec-leaderboard">
+                        <li>
+                            <span>#</span>
+                            <span>Name</span>
+                            <span>WPM</span>
+                            <span>Mistakes</span>
+                            <span>Date</span>
+                        </li>
+                    </ol>
+                </div>
 
-            <div class="leaderboard">
-                <h2>Time 30</h2>
-                <ol id="30sec-leaderboard" class="30sec-leaderboard">
-                    <li>
-                        <span>#</span>
-                        <span>Name</span>
-                        <span>WPM</span>
-                        <span>Mistakes</span>
-                        <span>Date</span>
-                    </li>
-                    <!-- Sample data goes here -->
-                    <li><span>1.</span>rocket - 277.32</li>
-                    <li><span>2.</span>joshua728 - 269.28</li>
-                    <!-- Add more sample data as needed -->
-                </ol>
-            </div>
+                <div class="leaderboard">
+                    <h2>Time 30</h2>
+                    <ol id="30sec-leaderboard" class="30sec-leaderboard">
+                        <li>
+                            <span>#</span>
+                            <span>Name</span>
+                            <span>WPM</span>
+                            <span>Mistakes</span>
+                            <span>Date</span>
+                        </li>
+                    </ol>
+                </div>
 
-            <div class="leaderboard">
-                <h2>Time 60</h2>
-                <ol id="60sec-leaderboard" class="60sec-leaderboard">
-                    <li>
-                        <span>#</span>
-                        <span>Name</span>
-                        <span>WPM</span>
-                        <span>Mistakes</span>
-                        <span>Date</span>
-                    </li>
-                    <!-- Sample data goes here -->
-                    <li><span>1.</span>rocket - 377.32</li>
-                    <li><span>2.</span>joshua728 - 269.28</li>
-                    <!-- Add more sample data as needed -->
-                </ol>
+                <div class="leaderboard">
+                    <h2>Time 60</h2>
+                    <ol id="60sec-leaderboard" class="60sec-leaderboard">
+                        <li>
+                            <span>#</span>
+                            <span>Name</span>
+                            <span>WPM</span>
+                            <span>Mistakes</span>
+                            <span>Date</span>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
+    <script type="text/javascript">
+        async function renderLeaderboard(category) {
+            const leaderboard = await axios
+                .get(`http://localhost:3001/api/v1/leaderboard?category=${category}`)
+                .then((response) => {
+                    let entries = response.data;
+                    let rank = 1;
+                    entries.forEach((entry) => {
+                        var list = document.createElement('li');
+                        list.innerText = `${rank++}. ${entry.user.username} | ${entry.wordsPerMinute} | ${
+                            entry.mistake
+                        } | ${entry.timestamp} `;
+                        document.getElementById(`${category}sec-leaderboard`).appendChild(list);
+                    });
+                })
+                .catch((error) => console.log(error));
+        }
+
+        function displayButtons() {
+            var username = sessionStorage.getItem('username');
+            if (username != null) {
+                var displayName = document.createElement('li');
+                displayName.innerText = `Hi, ${username}`;
+                var logoutButton = document.createElement('li');
+                logoutButton.innerHTML = `<a onclick="logout()")'>Logout</a>`;
+                document.getElementById('nav-links').appendChild(logoutButton);
+                document.getElementById('nav-links').appendChild(displayName);
+            } else {
+                var loginButton = document.createElement('li');
+                loginButton.innerHTML = '<a href="login.html">Login</a>';
+                document.getElementById('nav-links').appendChild(loginButton);
+                var registerButton = document.createElement('li');
+                registerButton.innerHTML = '<a href="register.html">Register</a>';
+                document.getElementById('nav-links').appendChild(registerButton);
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        displayButtons();
+        renderLeaderboard(15);
+        renderLeaderboard(30);
+        renderLeaderboard(60);
+    </script>
 </html>
