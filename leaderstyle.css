@@ -11,6 +11,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
+    
 }
 
 .container {
@@ -49,6 +50,18 @@ h1 {
 .leaderboard li span {
     font-weight: bold;
     margin-right: 10px;
+}
+
+.leaderboard li:nth-child(2) {
+    background-color: #ffcccc; /* Light red background for 1st */
+}
+
+.leaderboard li:nth-child(3) {
+    background-color: #ffe6cc; /* Light orange background for 2nd */
+}
+
+.leaderboard li:nth-child(4) {
+    background-color: #ffffcc; /* Light yellow background for 3rd */
 }
 
 .navbar {

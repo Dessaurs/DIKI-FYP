@@ -237,5 +237,31 @@ li:not(:first-child) span{
   font-size: 16px;
 }
 
+.shop-image {
+  position: absolute;
+  padding: 5px;
+  text-align: center; /* Align the image to the center */
+  top: 1300px;
+  object-fit: cover;
+  background-color: rgb(245,245,245,255);
 
+}
 
+.shop-image img {
+  max-width: 300%; /* Ensure the image doesn't exceed its container's width */
+}
+
+.banner {
+  top: 1250px;
+  position: absolute;
+  background-color: rgb(255, 67, 67); /* Background color of the banner */
+  color: white; /* Text color of the banner */
+  text-align: center; /* Center align the text */
+  padding: 20px; /* Add padding to the banner */
+  left: 0;
+  right: 0;
+}
+
+.banner p {
+  margin: 0; /* Remove default margin for the paragraph */
+}
