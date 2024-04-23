@@ -40,7 +40,7 @@
                     sessionStorage.setItem('username', response.data.username);
                     window.location.href = 'index.html';
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => window.alert(error.response.data));
         });
 
         function displayButtons() {
@@ -55,7 +55,6 @@
             } else {
                 var loginButton = document.createElement('li');
                 loginButton.innerHTML = '<a href="login.html">Login</a>';
-                console.log(loginButton);
                 document.getElementById('nav-links').appendChild(loginButton);
                 var registerButton = document.createElement('li');
                 registerButton.innerHTML = '<a href="register.html">Register</a>';
