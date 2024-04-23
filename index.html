@@ -5,17 +5,16 @@
         <title>DIKI</title>
         <link rel="stylesheet" href="indexstyle.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     </head>
     <body>
         <nav class="navbar">
             <div class="container">
                 <div class="logo">DIKI</div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Typing Test</a></li>
                     <li><a href="keytest.html">Keyboard Tester</a></li>
                     <li><a href="leaderboardindex.html">Leaderboard</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
                 </ul>
             </div>
         </nav>
@@ -59,5 +58,32 @@
 
         <script src="paragraphs.js"></script>
         <script src="script.js"></script>
+        <script>
+            function displayButtons() {
+                var username = sessionStorage.getItem('username');
+                if (username != null) {
+                    var displayName = document.createElement('li');
+                    displayName.innerText = `Hi, ${username}`;
+                    var logoutButton = document.createElement('li');
+                    logoutButton.innerHTML = `<a onclick="logout()")'>Logout</a>`;
+                    document.getElementById('nav-links').appendChild(logoutButton);
+                    document.getElementById('nav-links').appendChild(displayName);
+                } else {
+                    var loginButton = document.createElement('li');
+                    loginButton.innerHTML = '<a href="login.html">Login</a>';
+                    document.getElementById('nav-links').appendChild(loginButton);
+                    var registerButton = document.createElement('li');
+                    registerButton.innerHTML = '<a href="register.html">Register</a>';
+                    document.getElementById('nav-links').appendChild(registerButton);
+                }
+            }
+
+            function logout() {
+                sessionStorage.removeItem('username');
+                window.location.href = 'login.html';
+            }
+
+            displayButtons();
+        </script>
     </body>
 </html>

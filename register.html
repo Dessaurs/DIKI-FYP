@@ -11,12 +11,10 @@
         <nav class="navbar">
             <div class="container">
                 <div class="logo">DIKI</div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Typing Test</a></li>
                     <li><a href="keytest.html">Keyboard Tester</a></li>
                     <li><a href="leaderboardindex.html">Leaderboard</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
                 </ul>
             </div>
         </nav>
@@ -44,5 +42,27 @@
                 .then((response) => (window.location.href = 'login.html'))
                 .catch((error) => console.log(error));
         });
+
+        function displayButtons() {
+            var username = sessionStorage.getItem('username');
+            if (username != null) {
+                var displayName = document.createElement('li');
+                displayName.innerText = `Hi, ${username}`;
+                var logoutButton = document.createElement('li');
+                logoutButton.innerHTML = `<a onclick='sessionStorage.removeItem('username')'>Logout</a>`;
+                document.getElementById('nav-links').appendChild(logoutButton);
+                document.getElementById('nav-links').appendChild(displayName);
+            } else {
+                var loginButton = document.createElement('li');
+                loginButton.innerHTML = '<a href="login.html">Login</a>';
+                console.log(loginButton);
+                document.getElementById('nav-links').appendChild(loginButton);
+                var registerButton = document.createElement('li');
+                registerButton.innerHTML = '<a href="register.html">Register</a>';
+                document.getElementById('nav-links').appendChild(registerButton);
+            }
+        }
+
+        displayButtons();
     </script>
 </html>
